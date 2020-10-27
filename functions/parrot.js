@@ -1,8 +1,9 @@
 exports.handler = async function (event, context) {
-    if ("message" in event["body"]){
+    let body = JSON.parse(event.body);
+    if ("message" in body){
         return {
             statusCode: 200,
-            body: JSON.stringify({ message: event["body"]["message"] }),
+            body: JSON.stringify({ message: body.message }),
           };
     }
     return {
