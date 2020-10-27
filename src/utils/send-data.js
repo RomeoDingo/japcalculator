@@ -1,5 +1,5 @@
 import axios from "axios";
-
-export const sendData = (kcal: number) => () => {
-  axios.post(`.netlify/functions/save-db`, { kcal: kcal });
+const API_BASE_URL = process.env.REACT_APP_BACK_URL;
+export const sendData = (kcal) => () => {
+  axios.post(API_BASE_URL + `save-db`, { kcal: kcal });
 };

@@ -7,6 +7,13 @@ const client = new faunadb.Client({
 });
 
 exports.handler = async function(event, context) {
+  if (event.httpMethod == "OPTIONS") {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({"message": "Allow"}),
+      headers: {"Access-Control-Allow-Headers": "*", "Access-Control-Allow-Methods": "DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT", "Access-Control-Allow-Origin": "*"}
+    }
+  }
   const data = JSON.parse(event.body);
   console.log("Function `todo-create` invoked", data);
   const todoItem = {
